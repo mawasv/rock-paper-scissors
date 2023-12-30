@@ -45,31 +45,35 @@ function playRound(playerSelection, computerSelection) {
 // For triggering the rounds and keeping track of the score
 function game() {
 
-let = playerScore = 0
-let = computerScore = 0
+let playerScore = 0
+let computerScore = 0 
+let round = 0
 
-for (let i = 0; i < 5; i++) {
-    const result = playRound(getPlayerSelection(), getComputerChoice());
-    if (result.includes("win")) {
-        playerScore++;
-        console.log(`Player score: ${playerScore} | Computer score: ${computerScore}`);
-    } else if (result.includes("lose")) {
-        computerScore++;
-        console.log(`Player score: ${playerScore} | Computer score: ${computerScore}`);
+    for (let i = 0; i < 5; i++) {
+        const result = playRound(getPlayerSelection(), getComputerChoice());
+        if (result.includes("win")) {
+            playerScore++;
+            round++;
+            console.log(`Round: ${round} | Player score: ${playerScore} | Computer score: ${computerScore}`);
+        } else if (result.includes("lose")) {
+            computerScore++;
+            round++;
+            console.log(`Round: ${round} | Player score: ${playerScore} | Computer score: ${computerScore}`);
+        } else if (result.includes("Draw")) {
+            round++;
+            console.log(`Round: ${round} | Draw!`);
+        }
     }
 
-// Announcement of the final results
-console.log(`Final results: ${playerScore} | Computer score: ${computerScore}`);
-if (playerScore > computerScore) {
-    console.log("Congratulations! You win the game.");
-} else if (computerScore > playerScore) {
-    console.log("Too bad! You lost the game.");
-} else if (playerScore === computerScore) {
-    console.log("The game was an overall tie!");
+    console.log(`Final results: Player score: ${playerScore} | Computer score: ${computerScore}`);
+    if (playerScore > computerScore) {
+        console.log("Congratulations! You won the game.");
+    } else if (computerScore > playerScore) {
+        console.log("Too bad! You lost the game.");
+    } else if (playerScore === computerScore) {
+        console.log("The game was an overall tie!");
+    }
 }
 
-}
-
-}
 
 game();

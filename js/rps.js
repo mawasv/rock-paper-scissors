@@ -29,12 +29,12 @@ const getComputerChoice = () => {
 // Play one round and save the score
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        p.innerText = "You win! Rock beats scissors.";
+        p.innerText = "You win! Rock crushes scissors.";
         results.appendChild(p);
         playerScore++;
         round++;
     } else if (playerSelection === "rock" && computerSelection === "paper") {
-        p.innerText ="You lose! Paper beats rock.";
+        p.innerText ="You lose! Paper covers rock.";
         results.appendChild(p);
         computerScore++;
         round++;
@@ -43,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
         results.appendChild(p);
         round++;
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        p.innerText = "You lose! Scissors beat paper.";
+        p.innerText = "You lose! Scissors cut paper.";
         results.appendChild(p);
         computerScore++;
         round++;
@@ -52,7 +52,7 @@ function playRound(playerSelection, computerSelection) {
         results.appendChild(p);
         round++;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        p.innerText = "You win! Paper beats rock.";
+        p.innerText = "You win! Paper covers rock.";
         results.appendChild(p);
         playerScore++;
         round++;
@@ -61,12 +61,12 @@ function playRound(playerSelection, computerSelection) {
         results.appendChild(p);
         round++;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        p.innerText = "You win! Scissors beat paper.";
+        p.innerText = "You win! Scissors cut paper.";
         results.appendChild(p);
         playerScore++;
         round++;
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        p.innerText = "You lose! Rock beats scissors.";
+        p.innerText = "You lose! Rock crushes scissors.";
         results.appendChild(p);
         computerScore++;
         round++;

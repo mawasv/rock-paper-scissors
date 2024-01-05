@@ -1,56 +1,127 @@
-// Computer's choice
-function getComputerChoice(computerChoice) {
-
-    const rockPaperScissors = ["rock", "paper", "scissors"];
-
-    function random(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    } computerChoice = rockPaperScissors[random(0, 2)];
-
-    return computerChoice;
-}
-
 // Get player's choice
 
-function getPlayerSelection() {
+/* function getPlayerSelection() {
     let playerInput = prompt("Choose your weapon!");
     let result = playerInput.toLowerCase();
     return result;
-} 
-
-// Play one round and save the score
-function playRound(playerSelection, computerSelection) {
-
-    if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You win! Rock beats scissors.";
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        return "You lose! Paper beats rock.";
-    } else if (playerSelection === "rock" && computerSelection === "rock") {
-        return "Draw!";
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return "You lose! Scissors beat paper.";
-    } else if (playerSelection === "paper" && computerSelection === "paper") {
-        return "Draw!";
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You win! Paper beats rock.";
-    } else if (playerSelection === "scissors" && computerSelection === "scissors") {
-        return "Draw!";
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You win! Scissors beat paper.";
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return "You lose! Rock beats scissors.";
-    }
-}
-
-// For triggering the rounds and keeping track of the score
-function game() {
+} ; */
 
 let playerScore = 0
 let computerScore = 0 
 let round = 0
 
-    for (let i = 0; i < 5; i++) {
-        const result = playRound(getPlayerSelection(), getComputerChoice());
+const rockButton = document.querySelector(".rock");
+const paperButton = document.querySelector(".paper");
+const scissorsButton = document.querySelector(".scissors");
+const results = document.querySelector(".results");
+const runningScore = document.querySelector(".runningscore");
+const p = document.createElement("p");
+const h1 = document.createElement("h1");
+const h2 = document.createElement("h2");
+
+// Computer's choice
+const getComputerChoice = () => {
+    const rockPaperScissors = ["rock", "paper", "scissors"];
+    const randomNum = Math.floor(Math.random() * rockPaperScissors.length);
+    return rockPaperScissors[randomNum];
+}
+
+// Play one round and save the score
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === "rock" && computerSelection === "scissors") {
+        p.innerText = "You win! Rock beats scissors.";
+        results.appendChild(p);
+        playerScore++;
+        round++;
+    } else if (playerSelection === "rock" && computerSelection === "paper") {
+        p.innerText ="You lose! Paper beats rock.";
+        results.appendChild(p);
+        computerScore++;
+        round++;
+    } else if (playerSelection === "rock" && computerSelection === "rock") {
+        p.innerText = "Draw!";
+        results.appendChild(p);
+        round++;
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+        p.innerText = "You lose! Scissors beat paper.";
+        results.appendChild(p);
+        computerScore++;
+        round++;
+    } else if (playerSelection === "paper" && computerSelection === "paper") {
+        p.innerText = "Draw!";
+        results.appendChild(p);
+        round++;
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+        p.innerText = "You win! Paper beats rock.";
+        results.appendChild(p);
+        playerScore++;
+        round++;
+    } else if (playerSelection === "scissors" && computerSelection === "scissors") {
+        p.innerText = "Draw!";
+        results.appendChild(p);
+        round++;
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        p.innerText = "You win! Scissors beat paper.";
+        results.appendChild(p);
+        playerScore++;
+        round++;
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
+        p.innerText = "You lose! Rock beats scissors.";
+        results.appendChild(p);
+        computerScore++;
+        round++;
+    }
+}
+
+const checkForWin = (playerScore, computerScore) => {
+    if (playerScore === 5) {
+        h2.innerText = `Congratulations! It only took you ${round} rounds to beat that old crab of a computer. You won ${playerScore} to ${computerScore}.`;
+        results.append(h2);
+        results.removeChild(p);
+    } else if (computerScore === 5) {
+        h2.innerText = `Too bad! You got beaten by an old crab in ${round} rounds. You lost ${playerScore} to ${computerScore}.`;
+        results.append(h2);
+        results.removeChild(p);
+    }
+}
+
+const showRunningScore = (playerScore, computerScore) => {
+    h1.innerText = `Score: ${playerScore} | ${computerScore}`;
+    runningScore.appendChild(h1);
+}
+
+rockButton.addEventListener("click", () => {
+    const computerSelect = getComputerChoice();
+    const playerSelection = "rock";
+    playRound(playerSelection, computerSelect);
+    checkForWin(playerScore, computerScore);
+    showRunningScore(playerScore, computerScore);
+})
+
+paperButton.addEventListener("click", () => {
+    const computerSelect = getComputerChoice();
+    const playerSelection = "paper";
+    playRound(playerSelection, computerSelect);
+    checkForWin(playerScore, computerScore);
+    showRunningScore(playerScore, computerScore);
+})
+
+scissorsButton.addEventListener("click", () => {
+    const computerSelect = getComputerChoice();
+    const playerSelection = "scissors";
+    playRound(playerSelection, computerSelect);
+    checkForWin(playerScore, computerScore);
+    showRunningScore(playerScore, computerScore);
+})
+
+
+
+// For triggering the rounds and keeping track of the score
+/* function game() {
+
+
+     for (let i = 0; i < 5; i++) {
+         const result = playRound(getPlayerSelection(), getComputerChoice());
         if (result.includes("win")) {
             playerScore++;
             round++;
@@ -76,4 +147,4 @@ let round = 0
 }
 
 
-game();
+game(); */
